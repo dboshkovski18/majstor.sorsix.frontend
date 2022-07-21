@@ -1,9 +1,10 @@
-<div class="card text-center p-2" style="width: 18rem;">
+<div class="card text-center p-2 bg-light shadow" style="width: 18rem;">
   <img src="https://www.shareicon.net/data/2016/05/24/770139_man_512x512.png" class="card-img-top" alt="master-photo">
   <div class="card-body">
-    <h5 class="card-title">{{master.name}}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-      content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h5 class="card-title">{{master.name}} {{master.surname}}</h5>
+    <p class="card-text text-muted">{{master.type}}</p>
+    <h6>Phone number</h6>
+    <p><span class="badge bg-dark">{{master.phone_number}}</span></p>
+    <a href="#" class="btn btn-warning">Book master</a>
   </div>
 </div>
