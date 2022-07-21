@@ -3,11 +3,11 @@ import {MasterService} from "../../services/master.service";
 import {Master} from "../../interfaces/Master";
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-masters',
+  templateUrl: './masters.component.html',
+  styleUrls: ['./masters.component.css']
 })
-export class MainComponent implements OnInit {
+export class MastersComponent implements OnInit {
 
   masters! :Master[]
 
