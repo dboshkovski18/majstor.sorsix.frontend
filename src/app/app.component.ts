@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {MasterService} from "./services/master.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+
+  constructor(private masterService : MasterService) {
+  }
+
+  getMasters(): void {
+    this.masterService.getMasters().subscribe(
+      (data) => {
+        console.log(data)
+      }
+    )
+  }
+
 }
