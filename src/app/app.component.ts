@@ -12,12 +12,6 @@ export class AppComponent {
   constructor(private masterService : MasterService) {
   }
 
-  getMasters(): void {
-    this.masterService.getMasters().subscribe(
-      (data) => {
-        console.log(data)
-      }
-    )
-  }
+
 
 }
