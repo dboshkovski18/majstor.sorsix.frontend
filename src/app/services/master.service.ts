@@ -21,4 +21,13 @@ export class MasterService {
     return this.http.get<string[]>(this.url.concat('/types'))
   }
 
+  filterMasters(city_id: number, master_type: string): Observable<Master[]>{
+    return this.http.get<Master[]>(this.url.concat("/filter"), {
+      params: {
+        city_id: city_id,
+        master_type: master_type
+      }
+    })
+  }
+
 }

@@ -9,8 +9,11 @@ import {MasterService} from "./services/master.service";
 })
 export class AppComponent {
 
-  constructor(private masterService : MasterService) {
+  title="majstor_mk"
+
+  constructor() {
   }
+
 
 
 

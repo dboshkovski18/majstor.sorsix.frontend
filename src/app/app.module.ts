@@ -6,8 +6,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MastersComponent } from './components/masters/masters.component';
 import { MasterCardComponent } from './components/master-card/master-card.component';
-import { MasterFilterComponent } from './components/master-filter/master-filter.component';
 import { HomeComponent } from './components/home/home.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,12 +15,12 @@ import { HomeComponent } from './components/home/home.component';
     NavbarComponent,
     MastersComponent,
     MasterCardComponent,
-    MasterFilterComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
