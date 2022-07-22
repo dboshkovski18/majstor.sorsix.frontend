@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MasterService} from "../../services/master.service";
 import {Master} from "../../interfaces/Master";
+import {City} from "../../interfaces/City";
+import {FormControl, FormGroup} from "@angular/forms";
+import {CitiesService} from "../../services/cities.service";
 
 @Component({
   selector: 'app-masters',
@@ -9,12 +12,24 @@ import {Master} from "../../interfaces/Master";
 })
 export class MastersComponent implements OnInit {
 
-  masters! :Master[]
+  cities!: City[]
+  master_types!: string[]
 
-  constructor(private masterService: MasterService) { }
+
+  filterForm = new FormGroup({
+    master_type: new FormControl('Painter'),
+    city_id: new FormControl(1)
+  })
+
+  masters!: Master[]
+
+  constructor(private masterService: MasterService, private cityService: CitiesService) {
+  }
 
   ngOnInit(): void {
     this.getMasters()
+    this.loadAllCities()
+    this.loadAllMasterTypes()
   }
 
   getMasters(): void {
@@ -23,6 +38,27 @@ export class MastersComponent implements OnInit {
         this.masters = data
       }
     )
+  }
+
+
+  loadAllCities() {
+    return this.cityService.getCities().subscribe((data) => {
+      this.cities = data
+    })
+  }
+
+  loadAllMasterTypes() {
+    return this.masterService.getMasterTypes().subscribe((data) => {
+      console.log(data)
+      this.master_types = data
+    })
+  }
+
+  onFilter() {
+    console.warn(this.filterForm.value)
+    this.masterService.filterMasters(Number(this.filterForm.value.city_id)!, this.filterForm.value.master_type!).subscribe((data) => {
+      this.masters = data
+    })
   }
 
 }
