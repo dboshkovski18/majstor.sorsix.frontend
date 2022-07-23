@@ -17,4 +17,8 @@ export class CitiesService {
       tap(data => console.log(data))
     )
   }
+
+  getCitiesByMaster(id: number) : Observable<City[]>{
+    return this.http.get<City[]>(`http://localhost:8080/api/masters/${id}/city`)
+  }
 }

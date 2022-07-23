@@ -33,7 +33,7 @@ export class MastersComponent implements OnInit {
   }
 
   getMasters(): void {
-    this.masterService.getMasters().subscribe(
+    this.masterService.getApprovedMasters ().subscribe(
       (data) => {
         this.masters = data
       }

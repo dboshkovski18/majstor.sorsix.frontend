@@ -17,6 +17,10 @@ export class MasterService {
     return this.http.get<Master[]>(this.url)
   }
 
+  getApprovedMasters(): Observable<Master[]>{
+    return this.http.get<Master[]>(this.url.concat('/approved'))
+  }
+
   getMasterTypes(): Observable<string[]> {
     return this.http.get<string[]>(this.url.concat('/types'))
   }
@@ -49,5 +53,22 @@ export class MasterService {
       tap(data)
      })
   }
+
+  approveMaster(id: number): void {
+    this.http.get(this.url.concat(`/approve/${id}`)).subscribe(data => {
+      tap(data)
+    })
+
+  }
+
+
+  disapproveMaster(id: number): void {
+    this.http.get(this.url.concat(`/disapprove/${id}`)).subscribe(data => {
+      tap(data)
+    })
+
+  }
+
+
 
 }

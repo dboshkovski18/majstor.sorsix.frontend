@@ -6,5 +6,6 @@ export interface Master {
   embg : number,
   gender : string,
   type : string,
-  email : string
+  email : string,
+  status: string
 }

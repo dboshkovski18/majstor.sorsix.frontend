@@ -14,6 +14,7 @@ import {MyProfileComponent} from "./components/my-profile/my-profile.component";
 import {MasterProfileComponent} from "./components/master-profile/master-profile.component";
 import {RouterModule} from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     ClientProfileComponent,
     MyProfileComponent,
     MasterProfileComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
