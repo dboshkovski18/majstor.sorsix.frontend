@@ -29,4 +29,12 @@ export class BookingService {
     this.http.delete(this.url.concat(`/delete/${bookingId}`)).subscribe()
   }
 
+  createABooking(date: Date, master_id: number, client_id: number) : void {
+    this.http.post(this.url.concat('/add'),{
+      date: date,
+      master_id: master_id,
+      client_id: client_id
+    }).subscribe()
+  }
+
 }

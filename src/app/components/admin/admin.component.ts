@@ -4,6 +4,8 @@ import {Master} from "../../interfaces/Master";
 import {BehaviorSubject, debounceTime, Observable, share, startWith, Subject, switchMap, tap} from "rxjs";
 import {CitiesService} from "../../services/cities.service";
 import {City} from "../../interfaces/City";
+import {BookingService} from "../../services/booking.service";
+import {Booking} from "../../interfaces/Booking";
 
 
 @Component({
@@ -15,8 +17,9 @@ export class AdminComponent implements OnInit {
 
   masters$!: Observable<Array<Master>>
   subject$ = new BehaviorSubject<boolean>(true)
+  bookings$! : Observable<Array<Booking>>
 
-  constructor(private masterService: MasterService, private cityService: CitiesService) {
+  constructor(private masterService: MasterService, private cityService: CitiesService,private bookingService: BookingService) {
   }
 
   ngOnInit(): void {
@@ -24,6 +27,13 @@ export class AdminComponent implements OnInit {
       debounceTime(200),
       switchMap(_ => this.masterService.getMasters())
     )
+
+    this.bookings$ = this.subject$.pipe(
+      debounceTime(200),
+      switchMap(_ => this.bookingService.getBookings())
+    )
+
+
   }
 
   approveMaster(id: number) {

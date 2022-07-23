@@ -5,7 +5,7 @@
       <hr class="w-50 m-auto"/>
     </div>
   </div>
-  <table class="table mt-4">
+  <table class="table table-striped mt-4">
     <thead class="text-center">
     <tr>
       <th>Masters Table</th>
@@ -45,6 +45,28 @@
       <td *ngIf="master.status == 'PENDING' "><button type="button" class="btn btn-sm btn-success w-100 " (click)="approveMaster(master.id)">Approve</button> </td>
       <td *ngIf="master.status == 'APPROVED' "><button type="button" class="btn btn-sm btn-danger w-100 " (click)="disapproveMaster(master.id)">Undo</button> </td>
     </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-striped mt-4">
+    <thead class="text-center">
+    <tr>
+      <th>Bookings Table</th>
+    </tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Master</th>
+      <th scope="col">Client</th>
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor="let booking of bookings$ | async" >
+      <td>{{booking.id}}</td>
+      <td>{{booking.date | date}}</td>
+      <td>{{booking.master.name}} {{booking.master.surname}}</td>
+      <td>{{booking.client.name}} {{booking.client.surname}}</td>
+
     </tbody>
   </table>
 </div>

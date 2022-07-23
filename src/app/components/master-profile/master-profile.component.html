@@ -1,6 +1,6 @@
 <div class="container mt-4 p-5">
   <div class="row text-center">
-    <h3 class="display-6">Welcome back Master : {{master.name}} {{master.surname}}</h3>
+    <h3 class="display-6">Welcome back Master : {{master$.name }} {{master$.surname}}</h3>
     <hr class="w-75 m-auto mb-5">
   </div>
   <div class="row">
@@ -11,14 +11,14 @@
              alt="master-photo">
       </div>
       <div *ngIf="!showEditForm" class="row text-center mt-4 info">
-        <div>Name : <span>{{master.name}}</span></div>
-        <div>Surname : <span>{{master.surname}}</span></div>
-        <div>Phone number : <span>{{master.phone_number}}</span></div>
-        <div>Email : <span>{{master.email}}</span></div>
-        <div>SSL : <span>{{master.embg}}</span></div>
-        <div>Gender : <span>{{master.gender}}</span></div>
-        <div>Type of job : <span>{{master.type}}</span></div>
-        <button type="Button" class="btn btn-info" (click)="showEditFormEvent()">Edit</button>
+        <div>Name : <span>{{master$.name}}</span></div>
+        <div>Surname : <span>{{master$.surname}}</span></div>
+        <div>Phone number : <span>{{master$.phone_number}}</span></div>
+        <div>Email : <span>{{master$.email}}</span></div>
+        <div>SSL : <span>{{master$.embg}}</span></div>
+        <div>Gender : <span>{{master$.gender}}</span></div>
+        <div>Type of job : <span>{{master$.type}}</span></div>
+        <button type="button" class="btn btn-info" (click)="showEditFormEvent()">Edit</button>
       </div>
 
 
@@ -45,36 +45,25 @@
           <input id="gender" type="text" formControlName="gender" class="form-control">
 
           <label for="type" class="form-label">Type</label>
-          <input id="type" type="text" formControlName="type" class="form-control">
-
-          <button type="submit" class="btn btn-primary mt-3 w-100">Submit</button>
+          <select id="type"  class="form-control" formControlName="type">
+            <option *ngFor="let type of master_types" value="{{type}}">{{type}}</option>
+          </select>
+          <div class="row">
+            <div class="col-6">
+              <button type="button" class="btn btn-danger mt-3 w-100" (click)="showEditFormEvent()">Back</button>
+            </div>
+            <div class="col-6">
+              <button type="submit" class="btn btn-success mt-3 w-100">Submit</button>
+            </div>
+          </div>
         </form>
 
       </div>
     </div>
     <div class="col-8">
-      <h5 class="display-6 mt-5 me-5 ms-5">Bookings for master : {{master.name}}</h5>
-      <table class="table table-bordered table-striped mb-5 me-5 ms-5">
-        <thead>
-        <tr>
-          <th>Booking ID</th>
-          <th>Date and Time</th>
-          <th>Client</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let booking of bookings$ | async">
-            <td>{{booking.id}}</td>
-            <td>{{booking.date}}</td>
-            <td>{{booking.client.name.concat(" ").concat(booking.client.surname)}}</td>
-            <td class="text-center">
-              <button class="btn btn-info m-1" type="button">Approve</button>
-              <button class="btn btn-danger m-1" type="button" (click)="deleteBookingByMaster(booking.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row">
+        <app-bookings-table class="col-12" master_name="{{master$.name}}" [master_id]="master$.id"></app-bookings-table>
+      </div>
     </div>
   </div>
 </div>
