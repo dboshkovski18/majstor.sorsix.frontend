@@ -9,6 +9,7 @@ export interface Master {
   email : string,
   status: string,
   city: {
+    id: number,
     name: string
 }
 }

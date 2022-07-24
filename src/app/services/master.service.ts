@@ -38,7 +38,7 @@ export class MasterService {
     return this.http.get<Master>(this.url.concat(`/${id}`))
   }
 
-  editMaster(id: Number, name: string, surname: string, phone_number: string, email: string, embg: string, gender: string, type: string) : void{
+  editMaster(id: Number, name: string, surname: string, phone_number: string, email: string, embg: string, gender: string, type: string, city_id: number) : void{
     console.log(id)
      this.http.put(this.url.concat(`/edit/${id}`), {
       name:name,
@@ -47,7 +47,7 @@ export class MasterService {
       embg:embg,
       gender:gender,
       type:type,
-      city: 1,
+      city: city_id,
       email : email
     }).subscribe(data => {
       tap(data)

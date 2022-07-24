@@ -12,13 +12,16 @@
       <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
     </select>
 
-    <button type="submit" class="btn btn-outline-dark mt-4">Filter masters</button>
+    <div class="btn-group">
+      <button type="submit" class="btn btn-outline-dark mt-4">Filter masters</button>
+      <button type="button" class="btn btn-warning mt-4" (click)="getMasters()">List all</button>
+    </div>
   </form>
 
 </div>
 
 
-<div class="container-fluid shadow">
+<div class="container-fluid shadow" >
   <div class="row justify-content-center" >
     <div class="col-md-3 col-sm-12 m-3" *ngFor="let master of masters">
       <app-master-card  [master]="master"></app-master-card>

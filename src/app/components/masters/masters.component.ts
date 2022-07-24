@@ -16,10 +16,7 @@ export class MastersComponent implements OnInit {
   master_types!: string[]
 
 
-  filterForm = new FormGroup({
-    master_type: new FormControl('Painter'),
-    city_id: new FormControl(1)
-  })
+  filterForm! : FormGroup
 
   masters!: Master[]
 
@@ -30,6 +27,11 @@ export class MastersComponent implements OnInit {
     this.getMasters()
     this.loadAllCities()
     this.loadAllMasterTypes()
+
+    this.filterForm =  new FormGroup({
+      master_type: new FormControl('Painter'),
+      city_id: new FormControl(1)
+    })
   }
 
   getMasters(): void {

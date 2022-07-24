@@ -8,6 +8,8 @@ import {BookingService} from "../../services/booking.service";
 import {Booking} from "../../interfaces/Booking";
 import {ActivatedRoute} from "@angular/router";
 import {Client} from "../../interfaces/Client";
+import {CitiesService} from "../../services/cities.service";
+import { City } from 'src/app/interfaces/City';
 
 @Component({
   selector: 'app-master-profile',
@@ -28,9 +30,11 @@ export class MasterProfileComponent implements OnInit {
 
   showEditForm: boolean = false;
 
+  cities! : Array<City>
+
   profileForm! : FormGroup
 
-  constructor(private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute, private clientService: ClientService) {
+  constructor(private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute, private clientService: ClientService, private cityService: CitiesService) {
   }
 
   ngOnInit(): void {
@@ -45,7 +49,8 @@ export class MasterProfileComponent implements OnInit {
         embg: new FormControl(data.embg),
         type: new FormControl(data.type),
         email: new FormControl(data.email),
-        gender: new FormControl(data.gender)
+        gender: new FormControl(data.gender),
+        city: new FormControl(data.city.id)
       });
     })
 
@@ -53,6 +58,10 @@ export class MasterProfileComponent implements OnInit {
       debounceTime(200),
       flatMap(_ => this.masterService.getRecommendations(Number(this.id)))
     )
+
+    this.cityService.getCities().subscribe((data) => {
+      this.cities = data
+    })
 
     this.loadAllMasterTypes()
 
@@ -72,7 +81,7 @@ export class MasterProfileComponent implements OnInit {
   onEdit(): void {
     this.masterService.editMaster(this.id, this.profileForm.value.name, this.profileForm.value.surname,
       this.profileForm.value.phone_number, this.profileForm.value.email, this.profileForm.value.embg,
-      this.profileForm.value.gender, this.profileForm.value.type);
+      this.profileForm.value.gender, this.profileForm.value.type, this.profileForm.value.city);
     this.showEditForm = !this.showEditForm;
     window.location.reload()
   }

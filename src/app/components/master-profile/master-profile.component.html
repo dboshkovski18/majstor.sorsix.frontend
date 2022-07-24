@@ -18,6 +18,7 @@
         <div>Email : <span>{{master$.email}}</span></div>
         <div>SSL : <span>{{master$.embg}}</span></div>
         <div>Gender : <span>{{master$.gender}}</span></div>
+        <div>City : <span>{{master$.city.name}}</span></div>
         <div>Type of job : <span>{{master$.type}}</span></div>
         <button type="button" class="btn btn-success mt-2 mb-2 w-50 m-auto" (click)="recommendMaster(master$.id)">Recommend this master</button>
         <button type="button" class="btn btn-info" (click)="showEditFormEvent()">Edit</button>
@@ -33,6 +34,11 @@
 
           <label for="surname" class="form-label">Surname</label>
           <input id="surname" type="text" formControlName="surname" class="form-control">
+
+          <label for="city" class="form-label">city</label>
+          <select id="city" class="form-select text-center shadow" aria-label="Default select example" formControlName="city">
+            <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+          </select>
 
           <label for="phone_number" class="form-label">Phone Number</label>
           <input id="phone_number" type="text" formControlName="phone_number" class="form-control">
