@@ -7,5 +7,8 @@ export interface Master {
   gender : string,
   type : string,
   email : string,
-  status: string
+  status: string,
+  city: {
+    name: string
+}
 }

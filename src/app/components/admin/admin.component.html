@@ -48,13 +48,7 @@
           <td>{{master.gender}}</td>
           <td>{{master.type}}</td>
           <td>{{master.email}}</td>
-          <td><div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              See cities
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            </ul>
-          </div></td>
+          <td>{{master.city.name}}</td>
           <td>{{master.status}}</td>
           <td *ngIf="master.status == 'PENDING' "><button type="button" class="btn btn-sm btn-success w-100 " (click)="approveMaster(master.id)">Approve</button> </td>
           <td *ngIf="master.status == 'APPROVED' "><button type="button" class="btn btn-sm btn-danger w-100 " (click)="disapproveMaster(master.id)">Undo</button> </td>

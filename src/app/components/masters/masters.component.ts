@@ -55,7 +55,6 @@ export class MastersComponent implements OnInit {
   }
 
   onFilter() {
-    console.warn(this.filterForm.value)
     this.masterService.filterMasters(Number(this.filterForm.value.city_id)!, this.filterForm.value.master_type!).subscribe((data) => {
       this.masters = data
     })
