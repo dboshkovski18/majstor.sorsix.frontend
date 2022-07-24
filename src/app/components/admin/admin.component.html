@@ -1,72 +1,96 @@
-<div class="container p-3">
+
+
+<div class="container p-3 ">
   <div class="row text-center">
     <div class="col-12">
       <h4 class="display-6">Admin panel</h4>
       <hr class="w-50 m-auto"/>
     </div>
   </div>
-  <table class="table table-striped mt-4">
-    <thead class="text-center">
-    <tr>
-      <th>Masters Table</th>
-    </tr>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Surname</th>
-      <th scope="col">Phone number</th>
-      <th scope="col">EMBG</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Type</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Cities</th>
-      <th scope="col">Status</th>
-      <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody class="text-center">
-    <tr *ngFor="let master of masters$ | async" [class.bg-warning] = "master.status == 'APPROVED'">
-      <th scope="row">{{master.id}}</th>
-      <td>{{master.name}}</td>
-      <td>{{master.surname}}</td>
-      <td>{{master.phone_number}}</td>
-      <td>{{master.embg}}</td>
-      <td>{{master.gender}}</td>
-      <td>{{master.type}}</td>
-      <td>{{master.email}}</td>
-      <td><div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          See cities
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        </ul>
-      </div></td>
-      <td>{{master.status}}</td>
-      <td *ngIf="master.status == 'PENDING' "><button type="button" class="btn btn-sm btn-success w-100 " (click)="approveMaster(master.id)">Approve</button> </td>
-      <td *ngIf="master.status == 'APPROVED' "><button type="button" class="btn btn-sm btn-danger w-100 " (click)="disapproveMaster(master.id)">Undo</button> </td>
-    </tr>
-    </tbody>
-  </table>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="masters-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="true">Masters</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
+    </li>
 
-  <table class="table table-striped mt-4">
-    <thead class="text-center">
-    <tr>
-      <th>Bookings Table</th>
-    </tr>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Master</th>
-      <th scope="col">Client</th>
-    </tr>
-    </thead>
-    <tbody class="text-center">
-    <tr *ngFor="let booking of bookings$ | async" >
-      <td>{{booking.id}}</td>
-      <td>{{booking.date | date}}</td>
-      <td>{{booking.master.name}} {{booking.master.surname}}</td>
-      <td>{{booking.client.name}} {{booking.client.surname}}</td>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="masters" role="tabpanel" aria-labelledby="masters-tab">
 
-    </tbody>
-  </table>
+      <table class="table table-striped mt-4">
+        <thead class="text-center">
+        <tr>
+          <th>Masters Table</th>
+        </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Phone number</th>
+          <th scope="col">EMBG</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Type</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Cities</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <tr *ngFor="let master of masters$ | async" [class.bg-warning] = "master.status == 'APPROVED'">
+          <th scope="row">{{master.id}}</th>
+          <td>{{master.name}}</td>
+          <td>{{master.surname}}</td>
+          <td>{{master.phone_number}}</td>
+          <td>{{master.embg}}</td>
+          <td>{{master.gender}}</td>
+          <td>{{master.type}}</td>
+          <td>{{master.email}}</td>
+          <td><div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              See cities
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            </ul>
+          </div></td>
+          <td>{{master.status}}</td>
+          <td *ngIf="master.status == 'PENDING' "><button type="button" class="btn btn-sm btn-success w-100 " (click)="approveMaster(master.id)">Approve</button> </td>
+          <td *ngIf="master.status == 'APPROVED' "><button type="button" class="btn btn-sm btn-danger w-100 " (click)="disapproveMaster(master.id)">Undo</button> </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <div class="tab-pane fade" id="bookings" role="tabpanel" aria-labelledby="bookings-tab">
+      <table class="table table-striped mt-4">
+        <thead class="text-center">
+        <tr>
+          <th>Bookings Table</th>
+        </tr>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Master</th>
+          <th scope="col">Client</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <tr *ngFor="let booking of bookings$ | async" >
+          <td>{{booking.id}}</td>
+          <td>{{booking.date | date}}</td>
+          <td>{{booking.master.name}} {{booking.master.surname}}</td>
+          <td>{{booking.client.name}} {{booking.client.surname}}</td>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+
+
 </div>

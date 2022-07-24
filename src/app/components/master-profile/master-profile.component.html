@@ -1,6 +1,6 @@
 <div class="container mt-4 p-5">
   <div class="row text-center">
-    <h3 class="display-6">Welcome back Master : {{master$.name }} {{master$.surname}}</h3>
+    <h3 class="display-6">Welcome back Master : {{master$.name}} {{master$.surname}}</h3>
     <hr class="w-75 m-auto mb-5">
   </div>
   <div class="row">
@@ -11,6 +11,7 @@
              alt="master-photo">
       </div>
       <div *ngIf="!showEditForm" class="row text-center mt-4 info">
+        <div><span class="badge bg-danger">{{recommendations$ | async}} recommendations</span></div>
         <div>Name : <span>{{master$.name}}</span></div>
         <div>Surname : <span>{{master$.surname}}</span></div>
         <div>Phone number : <span>{{master$.phone_number}}</span></div>
@@ -18,6 +19,7 @@
         <div>SSL : <span>{{master$.embg}}</span></div>
         <div>Gender : <span>{{master$.gender}}</span></div>
         <div>Type of job : <span>{{master$.type}}</span></div>
+        <button type="button" class="btn btn-success mt-2 mb-2 w-50 m-auto" (click)="recommendMaster(master$.id)">Recommend this master</button>
         <button type="button" class="btn btn-info" (click)="showEditFormEvent()">Edit</button>
       </div>
 

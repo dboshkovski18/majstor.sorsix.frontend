@@ -20,4 +20,12 @@ export class ClientService {
     return this.http.get<Client>(this.url.concat(`/${id}`))
   }
 
+  recommendMaster(recommendation: string = 'RECOMMENDED',client : number, master: number): void{
+    this.http.post(this.url.concat('/rate'),{
+      recommendation: recommendation,
+      client: client,
+      master: master
+    }).subscribe()
+  }
+
 }

@@ -7,6 +7,7 @@ import {BehaviorSubject, debounceTime, flatMap, map, Observable, Subject, switch
 import {BookingService} from "../../services/booking.service";
 import {Booking} from "../../interfaces/Booking";
 import {ActivatedRoute} from "@angular/router";
+import {Client} from "../../interfaces/Client";
 
 @Component({
   selector: 'app-master-profile',
@@ -17,6 +18,10 @@ export class MasterProfileComponent implements OnInit {
 
   master$!: Master;
 
+  recommendations$!: Observable<number>
+
+  subject$ = new BehaviorSubject<boolean>(true)
+
   id!: Number;
 
   master_types!: string[]
@@ -25,7 +30,7 @@ export class MasterProfileComponent implements OnInit {
 
   profileForm! : FormGroup
 
-  constructor(private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute) {
+  constructor(private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute, private clientService: ClientService) {
   }
 
   ngOnInit(): void {
@@ -43,6 +48,11 @@ export class MasterProfileComponent implements OnInit {
         gender: new FormControl(data.gender)
       });
     })
+
+    this.recommendations$ = this.subject$.pipe(
+      debounceTime(200),
+      flatMap(_ => this.masterService.getRecommendations(Number(this.id)))
+    )
 
     this.loadAllMasterTypes()
 
@@ -67,6 +77,11 @@ export class MasterProfileComponent implements OnInit {
     window.location.reload()
   }
 
+
+  recommendMaster(id: number){
+    this.clientService.recommendMaster('RECOMMENDED',2,Number(this.id))
+    this.subject$.next(true)
+  }
 
 
 

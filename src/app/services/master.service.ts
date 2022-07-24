@@ -69,6 +69,10 @@ export class MasterService {
 
   }
 
+  getRecommendations(id: number): Observable<number>{
+    return this.http.get<number>(this.url.concat(`/recommendations/${id}`))
+  }
+
 
 
 }
