@@ -17,7 +17,7 @@ export class MasterService {
     return this.http.get<Master[]>(this.url)
   }
 
-  getApprovedMasters(): Observable<Master[]>{
+  getApprovedMasters(): Observable<Master[]> {
     return this.http.get<Master[]>(this.url.concat('/approved'))
   }
 
@@ -38,20 +38,20 @@ export class MasterService {
     return this.http.get<Master>(this.url.concat(`/${id}`))
   }
 
-  editMaster(id: Number, name: string, surname: string, phone_number: string, email: string, embg: string, gender: string, type: string, city_id: number) : void{
+  editMaster(id: Number, name: string, surname: string, phone_number: string, email: string, embg: string, gender: string, type: string, city_id: number): void {
     console.log(id)
-     this.http.put(this.url.concat(`/edit/${id}`), {
-      name:name,
-      surname:surname,
-      phone_number:phone_number,
-      embg:embg,
-      gender:gender,
-      type:type,
+    this.http.put(this.url.concat(`/edit/${id}`), {
+      name: name,
+      surname: surname,
+      phone_number: phone_number,
+      embg: embg,
+      gender: gender,
+      type: type,
       city: city_id,
-      email : email
+      email: email
     }).subscribe(data => {
       tap(data)
-     })
+    })
   }
 
   approveMaster(id: number): void {
@@ -69,10 +69,12 @@ export class MasterService {
 
   }
 
-  getRecommendations(id: number): Observable<number>{
+  getRecommendations(id: number): Observable<number> {
     return this.http.get<number>(this.url.concat(`/recommendations/${id}`))
   }
 
-
+  searchMastersByName(query: string): Observable<Array<Master>> {
+    return this.http.get<Array<Master>>(this.url.concat('/search'), {params: {query: query}})
+  }
 
 }

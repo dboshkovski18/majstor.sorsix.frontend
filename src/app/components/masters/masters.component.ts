@@ -20,6 +20,9 @@ export class MastersComponent implements OnInit {
 
   masters!: Master[]
 
+  totalRecords!: string
+  page = 1
+
   constructor(private masterService: MasterService, private cityService: CitiesService) {
   }
 
@@ -27,14 +30,17 @@ export class MastersComponent implements OnInit {
     this.getMasters()
     this.loadAllCities()
     this.loadAllMasterTypes()
-
     this.filterForm =  new FormGroup({
       master_type: new FormControl('Painter'),
       city_id: new FormControl(1)
     })
+
+
+    this.totalRecords = this.masters.length.toString()
   }
 
   getMasters(): void {
+    this.page = 1
     this.masterService.getApprovedMasters ().subscribe(
       (data) => {
         this.masters = data
@@ -57,6 +63,8 @@ export class MastersComponent implements OnInit {
   }
 
   onFilter() {
+    console.log(this.filterForm.value)
+    this.page = 1
     this.masterService.filterMasters(Number(this.filterForm.value.city_id)!, this.filterForm.value.master_type!).subscribe((data) => {
       this.masters = data
     })

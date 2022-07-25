@@ -1,6 +1,4 @@
-
-
-<div class="container p-3 ">
+<div class="container p-3 " xmlns:paginate="http://www.w3.org/1999/xhtml">
   <div class="row text-center">
     <div class="col-12">
       <h4 class="display-6">Admin panel</h4>
@@ -9,20 +7,36 @@
   </div>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="masters-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button" role="tab" aria-controls="masters" aria-selected="true">Masters</button>
+      <button class="nav-link active" id="masters-tab" data-bs-toggle="tab" data-bs-target="#masters" type="button"
+              role="tab" aria-controls="masters" aria-selected="true">Masters
+      </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button" role="tab" aria-controls="bookings" aria-selected="false">Bookings</button>
+      <button class="nav-link" id="bookings-tab" data-bs-toggle="tab" data-bs-target="#bookings" type="button"
+              role="tab" aria-controls="bookings" aria-selected="false">Bookings
+      </button>
     </li>
 
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="masters" role="tabpanel" aria-labelledby="masters-tab">
-
-      <table class="table table-striped mt-4">
+      <table class="table table-striped">
         <thead class="text-center">
         <tr>
           <th>Masters Table</th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th> <form class="col-md-12 col-sm-12 m-auto text-end" [formGroup]="searchForm" >
+            <input type="text" placeholder="Search for a master..." class="form-control-sm" formControlName="query" #searchBox (input)="search(searchBox.value)">
+          </form></th>
         </tr>
         <tr>
           <th scope="col">#</th>
@@ -39,7 +53,8 @@
         </tr>
         </thead>
         <tbody class="text-center">
-        <tr *ngFor="let master of masters$ | async" [class.bg-warning] = "master.status == 'APPROVED'">
+        <tr *ngFor="let master of masters | paginate: {id: 'paginate_masters', itemsPerPage: 5, currentPage: masters_page, totalItems: masters.length}"
+            [class.bg-warning]="master.status == 'APPROVED'">
           <th scope="row">{{master.id}}</th>
           <td>{{master.name}}</td>
           <td>{{master.surname}}</td>
@@ -50,11 +65,23 @@
           <td>{{master.email}}</td>
           <td>{{master.city.name}}</td>
           <td>{{master.status}}</td>
-          <td *ngIf="master.status == 'PENDING' "><button type="button" class="btn btn-sm btn-success w-100 " (click)="approveMaster(master.id)">Approve</button> </td>
-          <td *ngIf="master.status == 'APPROVED' "><button type="button" class="btn btn-sm btn-danger w-100 " (click)="disapproveMaster(master.id)">Undo</button> </td>
+          <td *ngIf="master.status == 'PENDING' ">
+            <button type="button" class="btn btn-sm btn-success w-100 " (click)="approveMaster(master.id)">Approve
+            </button>
+          </td>
+          <td *ngIf="master.status == 'APPROVED' ">
+            <button type="button" class="btn btn-sm btn-danger w-100 " (click)="disapproveMaster(master.id)">Undo
+            </button>
+          </td>
+          <td><a routerLink="/profile/{{master.id}}" class="btn btn-outline-secondary">View profile</a> </td>
         </tr>
         </tbody>
       </table>
+
+      <div class="text-center p-3">
+        <pagination-controls id="paginate_masters" [maxSize]="5" [directionLinks]="true"
+                             (pageChange)="masters_page = $event"></pagination-controls>
+      </div>
 
     </div>
 
@@ -73,7 +100,8 @@
         </tr>
         </thead>
         <tbody class="text-center">
-        <tr *ngFor="let booking of bookings$ | async" >
+        <tr
+          *ngFor="let booking of bookings | paginate: {id: 'paginate_bookings', itemsPerPage: 5, currentPage: bookings_page, totalItems: bookings.length}">
           <td>{{booking.id}}</td>
           <td>{{booking.date | date}}</td>
           <td>{{booking.master.name}} {{booking.master.surname}}</td>
@@ -82,9 +110,14 @@
         </tbody>
       </table>
 
+      <div class="text-center p-3">
+        <pagination-controls id="paginate_bookings" [maxSize]="5" [directionLinks]="true"
+                             (pageChange)="bookings_page = $event"></pagination-controls>
+      </div>
+
+
     </div>
   </div>
-
 
 
 </div>

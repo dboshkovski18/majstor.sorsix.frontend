@@ -1,0 +1,211 @@
+<div class="container">
+  <div class="row p-5">
+    <div class="col-md-6 col-sm-12 m-auto p-5 bg-secondary bg-opacity-25 rounded-1">
+      <h5 class="display-6 text-center">Sign up</h5>
+      <form class="row p-3">
+        <div class="col-md-12 col-sm-12 m-auto text-center">
+          <p class="text-muted">Choose a role:</p>
+          <div>
+            <span class="m-3">
+            <input type="radio" name="role" #master_radio id="master_radio" (input)="master_radio.checked = true">
+            <label class="form-check-label ms-1" for="master_radio">
+              Master
+            </label>
+            </span>
+
+            <span class="m-3">
+            <input type="radio" name="role" id="user_radio" #user_radio (input)="user_radio.checked = true">
+            <label class="form-check-label ms-1" for="user_radio">
+              User
+            </label>
+            </span>
+          </div>
+        </div>
+        </form>
+
+
+        <div *ngIf="master_radio.checked">
+          <form>
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="email" class="form-control" placeholder="E-mail" aria-label="E-mail">
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <input type="password" class="form-control" placeholder="Password" aria-label="Password">
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <input type="password" class="form-control" placeholder="Reenter password" aria-label="Password match">
+            </div>
+          </div>
+
+
+          <div class="row p-3">
+            <div class="col-12">
+              <div class="input-group">
+                <span class="input-group-text" id="phone_number">+389</span>
+                <input type="number" class="form-control" placeholder="Phone number" aria-label="Phone number"
+                       aria-describedby="phone_number">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row p-3">
+            <div class="input-group">
+              <input type="number" class="form-control" aria-label="Username" aria-describedby="embg">
+              <span class="input-group-text" id="embg">SSL</span>
+            </div>
+          </div>
+
+
+          <div class="row p-3 text-center">
+            <p class="text-muted">Master type:</p>
+            <div clas="col-md-12 col-sm-12">
+              <select class="form-select" aria-label="Select master type  ">
+                <option *ngFor="let type of types" value="{{type}}">{{type}}</option>
+              </select>
+            </div>
+
+          </div>
+
+
+          <div class="row p-3 text-center">
+            <p class="text-muted">City:</p>
+            <div clas="col-md-12 col-sm-12">
+              <select class="form-select" aria-label="Select city">
+                <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+              </select>
+            </div>
+
+          </div>
+
+            <div class="col-md-12 col-sm-12 m-auto text-center">
+              <p class="text-muted">Gender:</p>
+              <div>
+            <span class="m-3">
+            <input type="radio" name="gender" id="male">
+            <label class="form-check-label ms-1" for="master_radio">
+              Male
+            </label>
+            </span>
+
+                <span class="m-3">
+            <input type="radio" name="gender" id="female">
+            <label class="form-check-label ms-1" for="user_radio">
+              Female
+            </label>
+            </span>
+              </div>
+            </div>
+
+            <div class="row p-3">
+              <div class="col-12">
+                <button class="btn btn-success w-100">Submit</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div *ngIf="user_radio.checked">
+
+          <form>
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="email" class="form-control" placeholder="E-mail" aria-label="E-mail">
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-6">
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <input type="password" class="form-control" placeholder="Password" aria-label="Password">
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <input type="password" class="form-control" placeholder="Reenter password" aria-label="Password match">
+            </div>
+          </div>
+
+
+          <div class="row p-3">
+            <div class="col-12">
+              <div class="input-group">
+                <span class="input-group-text" id="phone_number_client">+389</span>
+                <input type="number" class="form-control" placeholder="Phone number" aria-label="Phone number"
+                       aria-describedby="phone_number">
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-12 col-sm-12 m-auto text-center">
+            <p class="text-muted">Gender:</p>
+            <div>
+            <span class="m-3">
+            <input type="radio" name="gender" id="male_user">
+            <label class="form-check-label ms-1" for="master_radio">
+              Male
+            </label>
+            </span>
+
+              <span class="m-3">
+            <input type="radio" name="gender" id="female_user">
+            <label class="form-check-label ms-1" for="user_radio">
+              Female
+            </label>
+            </span>
+            </div>
+          </div>
+
+
+
+          <div class="row p-3 text-center">
+            <div clas="col-md-12 col-sm-12">
+              <input type="text" class="form-control" placeholder="Address" aria-label="Address">
+            </div>
+
+          </div>
+
+            <div class="row p-3">
+              <div class="col-12">
+                <button class="btn btn-success w-100">Submit</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+    </div>
+  </div>
+</div>

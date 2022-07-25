@@ -14,7 +14,10 @@ import {MyProfileComponent} from "./components/my-profile/my-profile.component";
 import {MasterProfileComponent} from "./components/master-profile/master-profile.component";
 import {RouterModule} from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
-import { AdminComponent } from './components/admin/admin.component';
+import { AdminComponent } from './components/admin/admin.component'
+import {NgxPaginationModule} from 'ngx-pagination';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component'
 
 @NgModule({
   declarations: [
@@ -28,13 +31,16 @@ import { AdminComponent } from './components/admin/admin.component';
     MyProfileComponent,
     MasterProfileComponent,
     AdminComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
