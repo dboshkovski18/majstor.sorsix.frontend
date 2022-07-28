@@ -50,6 +50,10 @@ export class AdminComponent implements OnInit {
       switchMap(_ => this.masterService.getMasters())
     )
 
+    this.masters$.subscribe((data) => {
+      this.masters = data
+    })
+
     this.masters$ = this.searchSubject$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
