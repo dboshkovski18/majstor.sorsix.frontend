@@ -10,7 +10,7 @@ export class ClientService {
 
   constructor(private http : HttpClient) { }
 
-  url = "http://localhost:8080/api/clients"
+  url = "api/clients"
 
   getClients() : Observable<Client[]> {
     return this.http.get<Client[]>(this.url)

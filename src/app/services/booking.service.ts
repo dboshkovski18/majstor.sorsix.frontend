@@ -11,7 +11,7 @@ export class BookingService {
   constructor(private http: HttpClient) {
   }
 
-  url = "http://localhost:8080/api/bookings"
+  url = "api/bookings"
 
   getBookings(): Observable<Booking[]> {
     return this.http.get<Booking[]>(this.url)
