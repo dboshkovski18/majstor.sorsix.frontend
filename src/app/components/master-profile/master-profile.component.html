@@ -1,14 +1,15 @@
 <div class="container mt-4 p-5">
-  <div class="row text-center">
-    <h3 class="display-6">Welcome back Master : {{master$.name}} {{master$.surname}}</h3>
-    <hr class="w-75 m-auto mb-5">
-  </div>
+
   <div class="row">
     <div class="col-md-4 col-sm-12">
       <div class="row justify-content-center">
-        <button  *ngIf="user!.master.id == id" type="button" class="btn btn-sm btn-dark shadow edit-user rounded-5" (click)="showEditFormEvent()">Edit</button>
+        <button type="button" class="btn btn-sm btn-dark shadow edit-user rounded-5" (click)="showEditFormEvent()"
+                *ngIf="user!.master && user!.master.id == master$.id">Edit
+        </button>
         <div><h3 class="text-center display-6">Profile info</h3></div>
-        <img [src]="master$.gender == 'male' ? 'https://www.shareicon.net/data/2016/05/24/770139_man_512x512.png' : 'https://img.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14049.jpg'" class="card-img-top" alt="master-photo">
+        <img
+          [src]="master$.gender == 'male' ? 'https://www.shareicon.net/data/2016/05/24/770139_man_512x512.png' : 'https://img.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14049.jpg'"
+          class="card-img-top" alt="master-photo">
       </div>
       <div *ngIf="!showEditForm" class="row text-center mt-4 info">
         <div><span class="badge bg-danger">{{recommendations$ | async}} recommendations</span></div>
@@ -20,7 +21,9 @@
         <div>Gender : <span>{{master$.gender}}</span></div>
         <div>City : <span>{{master$.city.name}}</span></div>
         <div>Type of job : <span>{{master$.type}}</span></div>
-        <button type="button" class="btn btn-success mt-2 mb-2 w-50 m-auto" (click)="recommendMaster(master$.id)">Recommend this master</button>
+        <button *ngIf="user!.client" [disabled]="rated" type="button" class="btn btn-success mt-2 mb-2 w-50 m-auto"
+                (click)="recommendMaster(master$.id)">Recommend this master
+        </button>
       </div>
 
 
@@ -35,7 +38,8 @@
           <input id="surname" type="text" formControlName="surname" class="form-control">
 
           <label for="city" class="form-label">city</label>
-          <select id="city" class="form-select text-center shadow" aria-label="Default select example" formControlName="city">
+          <select id="city" class="form-select text-center shadow" aria-label="Default select example"
+                  formControlName="city">
             <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
           </select>
 
@@ -52,7 +56,7 @@
           <input id="gender" type="text" formControlName="gender" class="form-control">
 
           <label for="type" class="form-label">Type</label>
-          <select id="type"  class="form-control" formControlName="type">
+          <select id="type" class="form-control" formControlName="type">
             <option *ngFor="let type of master_types" value="{{type}}">{{type}}</option>
           </select>
           <div class="row">
@@ -67,9 +71,9 @@
 
       </div>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12" >
       <div class="row">
-        <app-bookings-table class="col-12" master_name="{{master$.name}}" [master_id]="master$.id"></app-bookings-table>
+        <app-bookings-table class="col-12"></app-bookings-table>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {Client} from "../interfaces/Client";
 
 @Injectable({
@@ -28,4 +28,21 @@ export class ClientService {
     }).subscribe()
   }
 
+  checkIfMasterRatedByUser(client_id: number, master_id: number): Observable<boolean>{
+    console.log("client service called!")
+      return this.http.get<boolean>(this.url.concat(`/${client_id}/rated/${master_id}`))
+  }
+
+  editClient(id: Number, name: string, surname: string, phone_number: string, email: string, gender: string,address: string): void {
+    this.http.put(this.url.concat(`/edit/${id}`), {
+      name: name,
+      surname: surname,
+      phone_number: phone_number,
+      address: address,
+      gender: gender,
+      email: email
+    }).subscribe(data => {
+      tap(data)
+    })
+  }
 }

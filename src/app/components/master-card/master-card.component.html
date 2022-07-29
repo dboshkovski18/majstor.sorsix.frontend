@@ -4,10 +4,9 @@
   <div class="card-body">
     <h5 class="card-title">{{master.name}} {{master.surname}}</h5>
     <p class="card-text text-muted">{{master.type}} from {{master.city.name}}</p>
-    <h6>Phone number</h6>
-    <p><span class="badge bg-dark">{{master.phone_number}}</span></p>
-    <a routerLink="/profile/{{master.id}}" *ngIf="user!.master.id != master.id" class="btn btn-warning">Book master</a>
-    <a routerLink="/profile/{{master.id}}" *ngIf="user!.master.id == master.id" class="btn btn-outline-dark">View your master</a>
+    <h6 *ngIf="user!">Phone number</h6>
+    <p *ngIf="user!"><span class="badge bg-dark">{{master.phone_number}}</span></p>
+    <a  *ngIf="user!" routerLink="/profile/{{master.id}}" class="btn btn-warning">Book master</a>
 
   </div>
 </div>

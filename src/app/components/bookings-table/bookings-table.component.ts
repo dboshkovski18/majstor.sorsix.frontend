@@ -14,14 +14,13 @@ import {TokenStorageService} from "../../services/token-storage.service";
 })
 export class BookingsTableComponent implements OnInit {
 
-  @Input() master_name: string | undefined
-  @Input() master_id: number | undefined
+  master_id! : number
 
-  user : User | undefined
+  client_id! : number
 
-  bookForm = new FormGroup({
-    date: new FormControl(Date.now())
-  })
+  user! : User
+
+  bookForm! : FormGroup
 
   subject$ = new BehaviorSubject<boolean>(true)
 
@@ -31,14 +30,25 @@ export class BookingsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.tokenService.getUser()
+
     this.getBookingsByMaster()
 
+    if(!this.route.snapshot.paramMap.get("master_id")){
+      this.master_id = this.user.master.id
+    }else {
+      this.master_id = Number(this.route.snapshot.paramMap.get("master_id"))
+    }
+
+    this.bookForm = new FormGroup({
+      date: new FormControl(Date.now())
+    })
   }
 
   getBookingsByMaster() : void {
-    this.bookings$ = this.subject$.pipe(debounceTime(200),
+    this.bookings$ = this.subject$.pipe(debounceTime(100),
       switchMap(_ => this.bookingService.getBookingsByMaster(this.master_id!)))
   }
+
 
   deleteBookingByMaster(bookingId : number) : void {
     this.bookingService.deleteBookingById(bookingId);
@@ -46,7 +56,8 @@ export class BookingsTableComponent implements OnInit {
   }
 
   book(){
-    this.bookingService.createABooking(new Date(this.bookForm.value.date!),Number(this.route.snapshot.paramMap.get('master_id')),2)
+    console.log("booked")
+    this.bookingService.createABooking(new Date(this.bookForm.value.date!),this.master_id,this.user!.client.id)
     this.subject$.next(true)
   }
 }

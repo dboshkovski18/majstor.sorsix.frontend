@@ -27,6 +27,7 @@ export class MastersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.getMasters()
     this.loadAllCities()
     this.loadAllMasterTypes()
@@ -37,6 +38,7 @@ export class MastersComponent implements OnInit {
 
 
     this.totalRecords = this.masters.length.toString()
+
   }
 
   getMasters(): void {

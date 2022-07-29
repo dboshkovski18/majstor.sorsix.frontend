@@ -25,6 +25,11 @@ export class BookingService {
     return this.http.get<Booking[]>(this.url.concat(`/forMaster/${masterId}`))
   }
 
+
+  getBookingsByClient(clientId : number) : Observable<Booking[]> {
+    return this.http.get<Booking[]>(this.url.concat(`/forClient/${clientId}`))
+  }
+
   deleteBookingById(bookingId : number) : void {
     this.http.delete(this.url.concat(`/delete/${bookingId}`)).subscribe()
   }

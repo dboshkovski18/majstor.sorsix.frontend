@@ -38,6 +38,10 @@ export class MasterProfileComponent implements OnInit {
 
   profileForm! : FormGroup
 
+  isMasterLogged = false
+
+  rated! : boolean
+
   constructor(private tokenService: TokenStorageService,private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute, private clientService: ClientService, private cityService: CitiesService) {
   }
 
@@ -45,21 +49,41 @@ export class MasterProfileComponent implements OnInit {
 
     this.user = this.tokenService.getUser()
 
-    this.id = Number(this.route.snapshot.paramMap.get('master_id'))
-    //We need to implement the User class first for dynamically id
-    this.masterService.getMasterById(this.id).subscribe((data) => {
-      this.master$ = data
-      this.profileForm = new FormGroup({
-        name: new FormControl(data.name),
-        surname: new FormControl(data.surname),
-        phone_number: new FormControl(data.phone_number),
-        embg: new FormControl(data.embg),
-        type: new FormControl(data.type),
-        email: new FormControl(data.email),
-        gender: new FormControl(data.gender),
-        city: new FormControl(data.city.id)
-      });
-    })
+    if(!this.route.snapshot.paramMap.get("master_id")){
+      this.master$ = this.user.master
+
+      this.masterService.getMasterById(this.master$.id).subscribe((data) => {
+        this.master$ = data
+        this.profileForm = new FormGroup({
+          name: new FormControl(data.name),
+          surname: new FormControl(data.surname),
+          phone_number: new FormControl(data.phone_number),
+          embg: new FormControl(data.embg),
+          type: new FormControl(data.type),
+          email: new FormControl(data.email),
+          gender: new FormControl(data.gender),
+          city: new FormControl(data.city.id)
+        });
+      })
+
+    }else {
+      this.id = Number(this.route.snapshot.paramMap.get('master_id'))
+      //We need to implement the User class first for dynamically id
+      this.masterService.getMasterById(this.id).subscribe((data) => {
+        this.master$ = data
+        this.profileForm = new FormGroup({
+          name: new FormControl(data.name),
+          surname: new FormControl(data.surname),
+          phone_number: new FormControl(data.phone_number),
+          embg: new FormControl(data.embg),
+          type: new FormControl(data.type),
+          email: new FormControl(data.email),
+          gender: new FormControl(data.gender),
+          city: new FormControl(data.city.id)
+        });
+      })
+
+    }
 
     this.recommendations$ = this.subject$.pipe(
       debounceTime(200),
@@ -72,6 +96,11 @@ export class MasterProfileComponent implements OnInit {
 
     this.loadAllMasterTypes()
 
+
+    this.clientService.checkIfMasterRatedByUser(this.user!.client.id,Number(this.id)).subscribe(data => {
+      console.log(data)
+      this.rated = data
+    })
   }
 
   showEditFormEvent(): void {
@@ -86,17 +115,19 @@ export class MasterProfileComponent implements OnInit {
   }
 
   onEdit(): void {
-    this.masterService.editMaster(this.id, this.profileForm.value.name, this.profileForm.value.surname,
+    console.log("data" , this.profileForm.value)
+    this.masterService.editMaster(this.user!.master.id, this.profileForm.value.name, this.profileForm.value.surname,
       this.profileForm.value.phone_number, this.profileForm.value.email, this.profileForm.value.embg,
       this.profileForm.value.gender, this.profileForm.value.type, this.profileForm.value.city);
     this.showEditForm = !this.showEditForm;
-    window.location.reload()
+     window.location.reload()
   }
 
 
   recommendMaster(id: number){
-    this.clientService.recommendMaster('RECOMMENDED',2,Number(this.id))
+    this.clientService.recommendMaster('RECOMMENDED',this.user!.client.id,Number(this.master$.id))
     this.subject$.next(true)
+    window.location.reload()
   }
 
 

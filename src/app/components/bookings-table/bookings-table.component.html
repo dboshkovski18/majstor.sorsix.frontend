@@ -5,25 +5,25 @@
     <tr>
       <th>Date and Time</th>
       <th>Client</th>
-      <th *ngIf="user!.master.id == master_id">Actions</th>
+      <th *ngIf="user!.master && user!.master.id == master_id">Actions</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let booking of bookings$ | async">
       <td>{{booking.date | date}}</td>
       <td>{{booking.client.name.concat(" ").concat(booking.client.surname)}}</td>
-      <td *ngIf="user!.master.id == master_id" class="text-center">
+      <td *ngIf="user!.master && user!.master.id == master_id" class="text-center">
         <button class="btn btn-danger w-100" type="button" (click)="deleteBookingByMaster(booking.id)">Delete</button>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <form *ngIf="user!.master.id == master_id" [formGroup]="bookForm" (ngSubmit)="book()" class="form-control p-3">
+  <form *ngIf="user.client" [formGroup]="bookForm" (ngSubmit)="book()" class="form-control p-3">
     <div class="row mb-3">
       <h5 for="date" class="col-12 text-muted">Pick a date</h5>
       <div class="col-12">
-        <input type="date" class="form-control text-center" id="date">
+        <input type="date" class="form-control text-center" formControlName="date" id="date">
       </div>
     </div>
     <div class="row">

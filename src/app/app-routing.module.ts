@@ -5,8 +5,10 @@ import {MyProfileComponent} from "./components/my-profile/my-profile.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {ClientProfileComponent} from "./components/client-profile/client-profile.component";
 
 const routes: Routes = [
+  {path: 'client/profile', component: ClientProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'admin', component: AdminComponent},
