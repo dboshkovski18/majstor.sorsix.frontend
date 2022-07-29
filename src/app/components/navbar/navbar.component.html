@@ -10,16 +10,18 @@
           <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/profile" class="nav-link">My Profile</a>
+          <a routerLink="/profile/{{user!.master.id}}" class="nav-link">My Profile</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="isAdminLogged" class="nav-item">
           <a routerLink="/admin" class="nav-link">Admin panel</a>
         </li>
       </ul>
       <span class="navbar-text">
+        <span *ngIf="isLoggedIn" class = "p-4">Hey {{user!.username}}!</span>
         <div class="btn-group">
         <a routerLink="/register" type="button" class="btn btn-warning text-black">Sign up</a>
-        <a routerLink="/login" type="button" class="btn btn-light text-black">Sign in</a>
+        <a *ngIf="isLoggedIn == true"  routerLink="/login" type="button" class="btn btn-light text-black">Sign in</a>
+        <button *ngIf="isLoggedIn == false" type="button" class="btn btn-danger text-black" (click)="logout()">Sign out</button>
         </div>
       </span>
     </div>

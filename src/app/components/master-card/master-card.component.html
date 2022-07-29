@@ -1,4 +1,4 @@
-<div class="card text-center p-2 bg-light shadow m-auto" style="width: 18rem;">
+<div class="card text-center p-2 bg-light shadow m-auto" style="width: 18rem;" >
   <span class="badge bg-danger w-75 m-auto shadow rating">{{recommendations}} recommendations</span>
   <img [src]="master.gender == 'male' ? 'https://www.shareicon.net/data/2016/05/24/770139_man_512x512.png' : 'https://img.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14049.jpg'" class="card-img-top" alt="master-photo">
   <div class="card-body">
@@ -6,6 +6,8 @@
     <p class="card-text text-muted">{{master.type}} from {{master.city.name}}</p>
     <h6>Phone number</h6>
     <p><span class="badge bg-dark">{{master.phone_number}}</span></p>
-    <a routerLink="/profile/{{master.id}}" class="btn btn-warning">Book master</a>
+    <a routerLink="/profile/{{master.id}}" *ngIf="user!.master.id != master.id" class="btn btn-warning">Book master</a>
+    <a routerLink="/profile/{{master.id}}" *ngIf="user!.master.id == master.id" class="btn btn-outline-dark">View your master</a>
+
   </div>
 </div>

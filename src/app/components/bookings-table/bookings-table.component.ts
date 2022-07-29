@@ -4,6 +4,8 @@ import {Booking} from "../../interfaces/Booking";
 import {BookingService} from "../../services/booking.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
+import { User } from 'src/app/interfaces/User';
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-bookings-table',
@@ -15,6 +17,8 @@ export class BookingsTableComponent implements OnInit {
   @Input() master_name: string | undefined
   @Input() master_id: number | undefined
 
+  user : User | undefined
+
   bookForm = new FormGroup({
     date: new FormControl(Date.now())
   })
@@ -23,10 +27,10 @@ export class BookingsTableComponent implements OnInit {
 
   bookings$! : Observable<Booking[]>
 
-  constructor(private bookingService : BookingService,private route: ActivatedRoute) { }
+  constructor(private bookingService : BookingService,private route: ActivatedRoute, private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
-
+    this.user = this.tokenService.getUser()
     this.getBookingsByMaster()
 
   }

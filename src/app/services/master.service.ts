@@ -11,7 +11,7 @@ export class MasterService {
   constructor(private http: HttpClient) {
   }
 
-  url = 'api/masters'
+  url = '/api/masters'
 
   getMasters(): Observable<Master[]> {
     return this.http.get<Master[]>(this.url)

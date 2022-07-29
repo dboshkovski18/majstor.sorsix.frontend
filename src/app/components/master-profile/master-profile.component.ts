@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Client} from "../../interfaces/Client";
 import {CitiesService} from "../../services/cities.service";
 import { City } from 'src/app/interfaces/City';
+import { User } from 'src/app/interfaces/User';
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-master-profile',
@@ -17,6 +19,8 @@ import { City } from 'src/app/interfaces/City';
   styleUrls: ['./master-profile.component.css']
 })
 export class MasterProfileComponent implements OnInit {
+
+  user : User | undefined
 
   master$!: Master;
 
@@ -34,10 +38,13 @@ export class MasterProfileComponent implements OnInit {
 
   profileForm! : FormGroup
 
-  constructor(private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute, private clientService: ClientService, private cityService: CitiesService) {
+  constructor(private tokenService: TokenStorageService,private masterService: MasterService, private bookingService: BookingService, private route: ActivatedRoute, private clientService: ClientService, private cityService: CitiesService) {
   }
 
   ngOnInit(): void {
+
+    this.user = this.tokenService.getUser()
+
     this.id = Number(this.route.snapshot.paramMap.get('master_id'))
     //We need to implement the User class first for dynamically id
     this.masterService.getMasterById(this.id).subscribe((data) => {

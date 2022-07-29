@@ -19,6 +19,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component'
 
+import {authInterceptorProviders} from './AuthInterceptor';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,7 @@ import { RegisterComponent } from './components/register/register.component'
     AppRoutingModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

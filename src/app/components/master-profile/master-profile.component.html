@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-4 col-sm-12">
       <div class="row justify-content-center">
-        <button type="button" class="btn btn-sm btn-dark shadow edit-user rounded-5" (click)="showEditFormEvent()">Edit</button>
+        <button  *ngIf="user!.master.id == id" type="button" class="btn btn-sm btn-dark shadow edit-user rounded-5" (click)="showEditFormEvent()">Edit</button>
         <div><h3 class="text-center display-6">Profile info</h3></div>
         <img [src]="master$.gender == 'male' ? 'https://www.shareicon.net/data/2016/05/24/770139_man_512x512.png' : 'https://img.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14049.jpg'" class="card-img-top" alt="master-photo">
       </div>
