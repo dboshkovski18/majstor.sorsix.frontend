@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component'
 
 import {authInterceptorProviders} from './AuthInterceptor';
+import { ClientBookingTableComponent } from './components/client-booking-table/client-booking-table.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {authInterceptorProviders} from './AuthInterceptor';
     AdminComponent,
     LoginComponent,
     RegisterComponent,
+    ClientBookingTableComponent,
   ],
   imports: [
     BrowserModule,

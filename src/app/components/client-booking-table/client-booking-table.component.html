@@ -1,0 +1,20 @@
+
+<h5 class="display-6 ">Bookings: </h5>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Date and Time</th>
+    <th>Master</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let booking of bookings$ | async">
+    <td>{{booking.date | date}}</td>
+    <td>{{booking.master.name.concat(" ").concat(booking.master.surname)}}</td>
+    <td class="text-center">
+      <button class="btn btn-danger w-100" type="button" (click)="deleteBooking(booking.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
