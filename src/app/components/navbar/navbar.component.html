@@ -11,6 +11,7 @@
         </li>
         <li class="nav-item" *ngIf="user">
           <a *ngIf="isMasterLogged" routerLink="/profile" class="nav-link">Master Profile</a>
+          <span class="badge master-status" [class.bg-success]="user!.master.status == 'APPROVED'" [class.bg-danger]="user!.master.status == 'PENDING'">{{user!.master.status}}</span>
           <a *ngIf="isClientLogged" routerLink="/client/profile" class="nav-link">Client Profile</a>
         </li>
         <li *ngIf="isAdminLogged" class="nav-item">
