@@ -21,6 +21,7 @@ import { RegisterComponent } from './components/register/register.component'
 
 import {authInterceptorProviders} from './AuthInterceptor';
 import { ClientBookingTableComponent } from './components/client-booking-table/client-booking-table.component';
+import {NgbModule, NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -39,14 +40,16 @@ import { ClientBookingTableComponent } from './components/client-booking-table/c
     RegisterComponent,
     ClientBookingTableComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RouterModule,
-    AppRoutingModule,
-    NgxPaginationModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        RouterModule,
+        AppRoutingModule,
+        NgxPaginationModule,
+        NgbPopoverModule,
+        NgbModule,
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
