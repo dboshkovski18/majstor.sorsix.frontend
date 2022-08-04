@@ -10,6 +10,8 @@ import {TokenStorageService} from "../../services/token-storage.service";
 })
 export class LoginComponent implements OnInit {
 
+  error : boolean = false;
+
   loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
@@ -23,12 +25,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.logIn(this.loginForm.value.username!, this.loginForm.value.password!).subscribe((data) => {
-      this.tokenStorage.saveToken(data.access_token);
-      this.tokenStorage.saveUser(data.user);
-
-      window.location.reload()
-    })
+    this.authService.logIn(this.loginForm.value.username!, this.loginForm.value.password!).subscribe(
+      res => {
+        this.tokenStorage.saveToken(res.access_token);
+        this.tokenStorage.saveUser(res.user);
+        window.location.reload()
+      },
+      err => this.error = true,
+    )
   }
 
 }

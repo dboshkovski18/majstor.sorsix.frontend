@@ -10,6 +10,6 @@ export interface Booking {
 },
   client: {
     name: string,
-    surname: string
+    surname: string,
   }
 }

@@ -11,6 +11,13 @@
           <label for="password" class="form-label">Password</label>
           <input formControlName="password" type="password" class="form-control" id="password">
         </div>
+        <div class="row mb-2">
+          <div class="col-12">
+            <span class="text-danger" [hidden]="!error">
+          The username or password did not match!
+        </span>
+          </div>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>

@@ -20,21 +20,22 @@ export class NavbarComponent implements OnInit {
   constructor(private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getUser().role == "ROLE_ADMIN"){
+
+    this.user = this.tokenService.getUser()
+
+    if(this.user.role == "ROLE_ADMIN"){
       this.isAdminLogged = true
     }
-    if(this.tokenService.getUser().role == "ROLE_CLIENT"){
+    if(this.user.role == "ROLE_CLIENT"){
       this.isClientLogged = true
     }
-    if(this.tokenService.getUser().role == "ROLE_MASTER"){
+    if(this.user.role == "ROLE_MASTER"){
       this.isMasterLogged = true
     }
 
-    if(this.tokenService.getUser()){
+    if(this.user){
       this.isLoggedIn = true
     }
-
-    this.user = this.tokenService.getUser()
   }
 
   logout(){
