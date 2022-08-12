@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Majstor.mk</a>
+    <img class="img-fluid" style="position: absolute; left: 45%" src="https://i.ibb.co/7bRnpL2/logo-transparent.png" width="150px" height="100px">
+<!--    <a class="navbar-brand ms-1" href="#">Majstor.mk</a>-->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,7 +12,7 @@
         </li>
         <li class="nav-item" *ngIf="user">
           <a *ngIf="isMasterLogged" routerLink="/profile" class="nav-link">Master Profile</a>
-          <span class="badge master-status" [class.bg-success]="user!.master.status == 'APPROVED'" [class.bg-danger]="user!.master.status == 'PENDING'">{{user!.master.status}}</span>
+          <span *ngIf="isMasterLogged" class="badge master-status" [class.bg-success]="user!.master.status == 'APPROVED'" [class.bg-danger]="user!.master.status == 'PENDING'">{{user!.master.status}}</span>
           <a *ngIf="isClientLogged" routerLink="/client/profile" class="nav-link">Client Profile</a>
         </li>
         <li *ngIf="isAdminLogged" class="nav-item">

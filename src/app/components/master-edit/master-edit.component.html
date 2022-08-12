@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>Edit your information</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Surname</mat-label>
+    <input matInput [(ngModel)]="data.surname">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Phone number</mat-label>
+    <input matInput [(ngModel)]="data.phone_number">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="data.email">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Embg</mat-label>
+    <input matInput [(ngModel)]="data.embg">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>City</mat-label>
+    <mat-select [(value)]="data.city_id" [(ngModel)]="data.city_id">
+      <mat-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Type of job</mat-label>
+    <mat-select [(value)]="data.type" [(ngModel)]="data.type">
+      <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+  </div>
+</div>

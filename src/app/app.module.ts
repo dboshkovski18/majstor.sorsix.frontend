@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MastersComponent } from './components/masters/masters.component';
 import { MasterCardComponent } from './components/master-card/master-card.component';
 import { HomeComponent } from './components/home/home.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BookingsTableComponent} from "./components/bookings-table/bookings-table.component";
 import {ClientProfileComponent} from "./components/client-profile/client-profile.component";
 import {MyProfileComponent} from "./components/my-profile/my-profile.component";
@@ -22,7 +22,16 @@ import { RegisterComponent } from './components/register/register.component'
 import {authInterceptorProviders} from './AuthInterceptor';
 import { ClientBookingTableComponent } from './components/client-booking-table/client-booking-table.component';
 import {NgbModule, NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDividerModule} from "@angular/material/divider";
+import { MasterEditComponent } from './components/master-edit/master-edit.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {ClientEditComponent} from "./components/client-edit/client-edit.component";
 
 @NgModule({
   declarations: [
@@ -39,17 +48,28 @@ import {NgbModule, NgbPopoverModule} from "@ng-bootstrap/ng-bootstrap";
     LoginComponent,
     RegisterComponent,
     ClientBookingTableComponent,
+    MasterEditComponent,
+    ClientEditComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        RouterModule,
-        AppRoutingModule,
-        NgxPaginationModule,
-        NgbPopoverModule,
-        NgbModule,
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule,
+    AppRoutingModule,
+    NgxPaginationModule,
+    NgbPopoverModule,
+    NgbModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatSelectModule
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

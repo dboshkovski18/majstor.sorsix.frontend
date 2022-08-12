@@ -1,8 +1,24 @@
-
 .edit-user{
   position: relative;
   width: 6rem;
   height: 2rem;
   right: -8rem;
   top: 6rem;
+}
+.client-card {
+  width: 300px;
+}
+
+.client-avatar {
+  background-size: cover;
+}
+
+.info > div {
+  font-weight: bold;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+.info > div > span {
+  font-weight: lighter;
 }

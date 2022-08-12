@@ -1,37 +1,36 @@
+<div class="display-6 mb-2 text-sm-start">Bookings:</div>
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Date and Time</th>
+    <th>Client</th>
+    <th *ngIf="user!.master && user!.master.id == master_id">Actions</th>
+    <th *ngIf="user!.master && user!.master.id == master_id">Location</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let booking of bookings$ | async">
+    <td>{{booking.date | date}}</td>
+    <td>{{booking.client.name.concat(" ").concat(booking.client.surname)}}</td>
+    <td *ngIf="user!.master && user!.master.id == master_id" class="text-center">
+      <button class="btn btn-danger w-100" type="button" (click)="deleteBookingByMaster(booking.id)">Delete</button>
+    </td>
+    <td *ngIf="user!.master && user!.master.id == master_id">
+    </td>
+  </tr>
+  </tbody>
+</table>
 
-  <h5 class="display-6 ">Bookings: </h5>
-  <table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-      <th>Date and Time</th>
-      <th>Client</th>
-      <th *ngIf="user!.master && user!.master.id == master_id">Actions</th>
-      <th *ngIf="user!.master && user!.master.id == master_id">Location</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let booking of bookings$ | async">
-      <td>{{booking.date | date}}</td>
-      <td>{{booking.client.name.concat(" ").concat(booking.client.surname)}}</td>
-      <td *ngIf="user!.master && user!.master.id == master_id" class="text-center">
-        <button class="btn btn-danger w-100" type="button" (click)="deleteBookingByMaster(booking.id)">Delete</button>
-      </td>
-      <td *ngIf="user!.master && user!.master.id == master_id">
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <form *ngIf="user.client" [formGroup]="bookForm" (ngSubmit)="book()" class="form-control p-3">
-    <div class="row mb-3">
-      <h5 for="date" class="col-12 text-muted">Pick a date</h5>
-      <div class="col-12">
-        <input type="date" class="form-control text-center" formControlName="date" id="date">
-      </div>
+<form *ngIf="user.client" [formGroup]="bookForm" (ngSubmit)="book()" class="form-control p-3">
+  <div class="row mb-3">
+    <h5 for="date" class="col-12 text-muted">Pick a date</h5>
+    <div class="col-12">
+      <input type="date" class="form-control text-center" formControlName="date" id="date">
     </div>
-    <div class="row">
-      <button type="submit" class="btn btn-outline-dark w-75 m-auto">Book now!</button>
-    </div>
-  </form>
+  </div>
+  <div class="row">
+    <button type="submit" class="btn btn-outline-dark w-75 m-auto">Book now!</button>
+  </div>
+</form>
 
 
