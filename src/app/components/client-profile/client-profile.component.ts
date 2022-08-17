@@ -59,7 +59,7 @@ export class ClientProfileComponent implements OnInit {
     console.log("data", this.profileForm.value)
     this.clientService.editClient(this.user!.client.id, this.profileForm.value.name, this.profileForm.value.surname, this.profileForm.value.phone_number, this.profileForm.value.email, this.profileForm.value.gender, this.profileForm.value.address);
     this.showEditForm = !this.showEditForm;
-    window.location.reload();
+    this.tokenService.signOut()
   }
 
   editClientDialog(): void {
@@ -70,8 +70,8 @@ export class ClientProfileComponent implements OnInit {
         id : this!.user.client.id,
         name : this.client.name,
         surname : this.client.surname,
-        email : this.client.email,
         phone_number : this.client.phone_number,
+        email : this.client.email,
         address : this.client.address,
         gender : this.client.gender
       }
@@ -85,8 +85,8 @@ export class ClientProfileComponent implements OnInit {
     id: number,
     name: string,
     surname: string,
-    email: string,
     phone_number: string,
+    email: string,
     gender: string,
     address: string,
   ): void {

@@ -4,18 +4,17 @@
   <tr>
     <th>Date and Time</th>
     <th>Client</th>
-    <th *ngIf="user!.master && user!.master.id == master_id">Actions</th>
     <th *ngIf="user!.master && user!.master.id == master_id">Location</th>
+    <th *ngIf="user!.master && user!.master.id == master_id">Actions</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let booking of bookings$ | async">
     <td>{{booking.date | date}}</td>
     <td>{{booking.client.name.concat(" ").concat(booking.client.surname)}}</td>
+    <td>{{booking.client.address}}</td>
     <td *ngIf="user!.master && user!.master.id == master_id" class="text-center">
       <button class="btn btn-danger w-100" type="button" (click)="deleteBookingByMaster(booking.id)">Delete</button>
-    </td>
-    <td *ngIf="user!.master && user!.master.id == master_id">
     </td>
   </tr>
   </tbody>

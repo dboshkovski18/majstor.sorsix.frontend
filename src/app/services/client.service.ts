@@ -33,7 +33,7 @@ export class ClientService {
       return this.http.get<boolean>(this.url.concat(`/${client_id}/rated/${master_id}`))
   }
 
-  editClient(id: Number, name: string, surname: string, phone_number: string, email: string, gender: string,address: string): void {
+  editClient(id: number, name: string, surname: string, phone_number: string, email: string, gender: string,address: string): void {
     this.http.put(this.url.concat(`/edit/${id}`), {
       name: name,
       surname: surname,

@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
       gender: new FormControl('male',[Validators.required]),
       address: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.required,Validators.email]),
-      re_enterPassword : new FormControl('',[Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')])
+      re_enterPassword : new FormControl('',[Validators.required,Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$')])
     },this.checkPasswords)
   }
 

@@ -2,19 +2,18 @@
 
   <div class="row">
     <div class="col-4">
-      <div class="display-6 mb-2 ">Profile card</div>
-      <mat-card class="client-card">
+      <mat-card class="client-card shadow">
         <mat-card-header>
           <img mat-card-avatar
                [src]="client.gender == 'male' ? 'https://www.shareicon.net/data/2016/05/24/770139_man_512x512.png' : 'https://img.freepik.com/free-vector/man-avatar-profile-round-icon_24640-14049.jpg'"
                class="client-avatar" alt="client-photo">
           <mat-card-title>{{client.name}} {{client.surname}}</mat-card-title>
-          <mat-card-subtitle>Address : {{client.address}}</mat-card-subtitle>
+          <mat-card-subtitle>{{client.email}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <div class="row info">
             <div>Phone number : <span>{{client.phone_number}}</span></div>
-            <div>Email : <span>{{client.email}}</span></div>
+            <div>Address : <span>{{client.address}}</span></div>
             <div>Gender : <span>{{client.gender}}</span></div>
           </div>
         </mat-card-content>

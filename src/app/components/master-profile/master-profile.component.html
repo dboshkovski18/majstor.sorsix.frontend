@@ -13,7 +13,7 @@
         </mat-card-header>
         <mat-card-content>
           <div class="row info">
-            <div><span class="badge bg-danger">{{(recommendations$ | async) ? (recommendations$ | async) : 0}}
+            <div><span class="badge bg-danger">{{recommendations$ | async}}
               recommendations</span></div>
             <div>Phone number : <span>{{master$.phone_number}}</span></div>
             <div>Email : <span>{{master$.email}}</span></div>

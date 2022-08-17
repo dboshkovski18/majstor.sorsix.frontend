@@ -24,7 +24,7 @@
 <div class="container-fluid shadow" >
   <div class="row justify-content-center" >
     <div *ngIf="masters.length == 0" class="row text-center p-5"><h4 class="display-6">There are no masters of this filter!</h4> </div>
-    <div class="col-md-3 col-sm-12 m-3" *ngFor="let master of masters | paginate: {id: 'listing_pagination', itemsPerPage: 3, currentPage: page, totalItems: totalRecords}">
+    <div class="col-md-3 col-sm-12 m-3" *ngFor="let master of masters | paginate: {id: 'listing_pagination', itemsPerPage: 6, currentPage: page, totalItems: totalRecords}">
       <app-master-card  [master]="master"></app-master-card>
     </div>
   </div>

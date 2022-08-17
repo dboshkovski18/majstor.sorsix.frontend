@@ -11,5 +11,6 @@ export interface Booking {
   client: {
     name: string,
     surname: string,
+    address: string
   }
 }

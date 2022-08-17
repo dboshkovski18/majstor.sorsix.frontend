@@ -141,8 +141,8 @@ export class MasterProfileComponent implements OnInit {
 
   recommendMaster(id: number) {
     this.clientService.recommendMaster('RECOMMENDED', this.user!.client.id, Number(this.master$.id))
+    this.rated = true
     this.subject$.next(true)
-    window.location.reload()
   }
 
   editMasterDialog(): void {
